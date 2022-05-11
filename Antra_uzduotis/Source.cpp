@@ -78,7 +78,8 @@ int main()
 
 		std::stringstream S;
 		string vardas, pavarde, tmp;
-		int pazymiai = 0, p = 0, a = 1;
+		int pazymiai = 0, p = 0, a = 1, egzaminas = 0, mark = 0;
+		double galutinis = 0, mediana = 0;
 		std::vector<studentas> list;
 		studentas stud;
 
@@ -86,26 +87,34 @@ int main()
 		{
 				S.clear();
 				S << line;
-				S >> stud.vardas >> stud.pavarde;
+				S >> vardas >> pavarde;
+				
+				
+				stud.set_vardas(vardas);
 				for (int i = 0; i < (space - 2); i++)
 				{
 					S >> p;
 					pazymiai += p;
-					stud.mark.push_back(p);
+					mark;
+					stud.set_mark(mark);
 				}
-				S >> stud.egzaminas;
-				stud.galutinis = 0.4 * (pazymiai / (space - 2)) + 0.6 * stud.egzaminas;
-				sort(stud.mark.begin(), stud.mark.end());
+				S >> egzaminas;
+				stud.set_egzaminas(egzaminas);
+				galutinis = 0.4 * (pazymiai / (space - 2)) + 0.6 * egzaminas;
+				stud.set_galutinis(galutinis);
+				sort(stud.mark().begin(), stud.mark().end());
 				if ((space-2) % 2)
 				{
-					stud.mediana = (stud.mark[(space-2) / 2] + stud.mark[((space-2) / 2 + 1)]) / 2;
+					mediana = (stud.mark()[(space-2) / 2] + stud.mark()[((space-2) / 2 + 1)]) / 2;
+					stud.set_mediana(mediana);
 				}
 				else
 				{
-					stud.mediana = stud.mark[(space-2) / 2];
+					mediana = stud.mark()[(space-2) / 2];
+					stud.set_mediana(mediana);
 				}
 				pazymiai = 0;
-				stud.mark.clear();
+				stud.mark().clear();
 				list.push_back(stud);
 		}
 
@@ -117,7 +126,7 @@ int main()
 
 		for (auto el : list)
 		{
-			O << std::left << std::setw(20) << el.vardas << std::left << std::setw(20) << el.pavarde << std::left << std::setw(20) << std::fixed << std::setprecision(2) << el.galutinis << std::left << std::setw(20) << std::fixed << std::setprecision(2) << el.mediana << std::endl;
+			O << std::left << std::setw(20) << el.vardas() << std::left << std::setw(20) << el.pavarde() << std::left << std::setw(20) << std::fixed << std::setprecision(2) << el.galutinis() << std::left << std::setw(20) << std::fixed << std::setprecision(2) << el.mediana() << std::endl;
 
 		}
 
@@ -214,31 +223,42 @@ int main()
 
 		start = std::chrono::steady_clock::now();
 
+		string vardas, pavarde;
+		int mark = 0, egzaminas = 0;
+		double galutinis = 0, mediana = 0;
+
 		for (auto& line : data)
 		{
 			S.str("");
 			S << line;
-			S >> stud.vardas >> stud.pavarde;
+			S >> vardas >> pavarde;
+			stud.set_vardas(vardas);
+			stud.set_pavarde(pavarde);
+
 			for (int i = 0; i < (np - 3); i++)
 			{
 				S >> p;
 				pazymiai += p;
-				stud.mark.push_back(p);
+				stud.mark().push_back(p);
 			}
-			S >> stud.egzaminas;
-			stud.galutinis = 0.4 * (pazymiai / (np - 3)) + 0.6 * stud.egzaminas;
-			sort(stud.mark.begin(), stud.mark.end());
-			sort(stud.mark.begin(), stud.mark.end());
+			S >> egzaminas;
+			stud.set_egzaminas(egzaminas);
+			galutinis = 0.4 * (pazymiai / (np - 3)) + 0.6 * egzaminas;
+			stud.set_galutinis(galutinis);
+			sort(stud.mark().begin(), stud.mark().end());
+			sort(stud.mark().begin(), stud.mark().end());
 			if ((np - 3) % 2)
 			{
-				stud.mediana = (stud.mark[(np - 3) / 2] + stud.mark[((np - 3) / 2 + 1)]) / 2;
+				mediana = (stud.mark()[(np - 3) / 2] + stud.mark()[((np - 3) / 2 + 1)]) / 2;
+				stud.set_mediana(mediana);
 			}
 			else
 			{
-				stud.mediana = stud.mark[(np - 3) / 2];
+				//mediana = stud.mark()[(np - 3) / 2];
+				stud.set_mediana(mediana);
 			}
 			pazymiai = 0;
-			stud.mark.clear();
+			stud.mark().clear();
 			list.push_back(stud);
 		}
 
@@ -253,7 +273,7 @@ int main()
 		start = std::chrono::steady_clock::now();
 		for (auto el = list.end(); el != list.begin(); el--)
 		{
-			if (el->galutinis >= 5)
+			if (el->galutinis() >= 5)
 			{
 				geri.push_back(*el);
 				list.pop_back();
@@ -268,11 +288,11 @@ int main()
 
 		for (auto el : geri)
 		{
-			G << std::left << std::setw(20) << el.vardas << std::left << std::setw(20) << el.pavarde << std::left << std::setw(20) << std::fixed << std::setprecision(2) << el.galutinis << std::left << std::setw(20) << std::fixed << std::setprecision(2) << el.mediana << std::endl;
+			G << std::left << std::setw(20) << el.vardas() << std::left << std::setw(20) << el.pavarde() << std::left << std::setw(20) << std::fixed << std::setprecision(2) << el.galutinis() << std::left << std::setw(20) << std::fixed << std::setprecision(2) << el.mediana() << std::endl;
 		}
 		for (auto el : list)
 		{
-			B << std::left << std::setw(20) << el.vardas << std::left << std::setw(20) << el.pavarde << std::left << std::setw(20) << std::fixed << std::setprecision(2) << el.galutinis << std::left << std::setw(20) << std::fixed << std::setprecision(2) << el.mediana << std::endl;
+			B << std::left << std::setw(20) << el.vardas() << std::left << std::setw(20) << el.pavarde() << std::left << std::setw(20) << std::fixed << std::setprecision(2) << el.galutinis() << std::left << std::setw(20) << std::fixed << std::setprecision(2) << el.mediana() << std::endl;
 		}
 
 		end = std::chrono::steady_clock::now();

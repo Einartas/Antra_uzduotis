@@ -16,12 +16,31 @@ using std::cout;
 using std::cin;
 using std::string;
 
-struct studentas
+class studentas
 {
-	string vardas, pavarde;
-	std::vector<int> mark;
-	int pazymiai = 0, egzaminas = 0, vidurkis = 0;
-	double galutinis = 0, mediana = 0;
+private:
+	std::string vardas_;
+	std::string pavarde_;
+	int egzaminas_, pazymiai_;
+	std::vector<int> mark_;
+	double galutinis_, mediana_;
+public:
+	inline std::string vardas() const { return vardas_; }
+	inline std::string pavarde() const { return pavarde_; }
+	inline int egzaminas() { return egzaminas_; }
+	inline int pazymiai() { return pazymiai_; }
+	inline std::vector<int> mark() const { return mark_; }
+	inline int mediana() { return mediana_; }
+	inline int galutinis() const { return galutinis_; }
+
+	std::istream& read(std::ifstream&, double&);
+	void set_vardas(string& v) { vardas_ = v; }
+	void set_pavarde(string& p) { pavarde_ = p; }
+	void set_mark(int& m) { mark_.push_back(m); }
+	void set_egzaminas(int& e) { egzaminas_ = e; }
+	void set_pazymiai(int& p) { pazymiai_ = p; }
+	void set_galutinis(double& g) { galutinis_ = g; }
+	void set_mediana(double& m) { mediana_ = m; }
 };
 
 void input(studentas& temp);
