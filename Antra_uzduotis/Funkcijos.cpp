@@ -1,5 +1,36 @@
 #include "Funkcijos.h"
 
+studentas::studentas() {  }; // destruktorius
+
+studentas :: studentas(const studentas& stud) // copy konstruktorius
+{
+
+	vardas_ = stud.vardas_;
+	pavarde_ = stud.pavarde_;
+	egzaminas_ = egzaminas_;
+	mark_ = stud.mark_;
+	galutinis_ = stud.galutinis_;
+	mediana_ = stud.mediana_;
+}
+
+studentas& studentas :: operator=(const studentas& stud) // priskyrimo operatorius
+{
+	if (this != &stud)
+	{
+		vardas_ = stud.vardas_;
+		pavarde_ = stud.pavarde_;
+		egzaminas_ = stud.egzaminas_;
+		galutinis_ = stud.galutinis_;
+		mediana_ = stud.mediana_;
+	}
+	return *this;
+}
+
+std::ostream& operator << (std::ostream& out, studentas& s)
+{
+	out << std::left << std::setw(20) << s.vardas() << std::left << std::setw(20) << s.pavarde() << std::left << std::setw(20) << std::fixed << std::setprecision(2) << s.galutinis() << std::left << std::setw(20) << std::fixed << std::setprecision(2) << s.mediana() << std::endl;
+}
+
 bool compare_vardas(const studentas& a, const studentas& b)
 {
 	if (a.vardas() == b.vardas()) return a.pavarde() < b.pavarde();

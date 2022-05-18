@@ -25,14 +25,16 @@ private:
 	std::vector<int> mark_;
 	double galutinis_, mediana_;
 public:
-	inline std::string vardas() const { return vardas_; }
+	studentas();
+	//getter'iai
+	inline std::string vardas() const { return vardas_; } 
 	inline std::string pavarde() const { return pavarde_; }
 	inline int egzaminas() { return egzaminas_; }
 	inline int pazymiai() { return pazymiai_; }
 	inline std::vector<int> mark() const { return mark_; }
 	inline int mediana() { return mediana_; }
 	inline int galutinis() const { return galutinis_; }
-
+	//setter'iai
 	std::istream& read(std::ifstream&, double&);
 	void set_vardas(string& v) { vardas_ = v; }
 	void set_pavarde(string& p) { pavarde_ = p; }
@@ -41,6 +43,12 @@ public:
 	void set_pazymiai(int& p) { pazymiai_ = p; }
 	void set_galutinis(double& g) { galutinis_ = g; }
 	void set_mediana(double& m) { mediana_ = m; }
+
+	studentas(const studentas&); // copy konstruktorius
+
+	studentas& operator=(const studentas&); // priskyrimo operatorius
+
+	friend std::ostream& operator << (std::ostream &out, studentas &s);
 };
 
 void input(studentas& temp);

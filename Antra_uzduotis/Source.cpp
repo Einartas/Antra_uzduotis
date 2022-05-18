@@ -126,8 +126,7 @@ int main()
 
 		for (auto el : list)
 		{
-			O << std::left << std::setw(20) << el.vardas() << std::left << std::setw(20) << el.pavarde() << std::left << std::setw(20) << std::fixed << std::setprecision(2) << el.galutinis() << std::left << std::setw(20) << std::fixed << std::setprecision(2) << el.mediana() << std::endl;
-
+			O << el;
 		}
 
 		O.close();
@@ -288,11 +287,11 @@ int main()
 
 		for (auto el : geri)
 		{
-			G << std::left << std::setw(20) << el.vardas() << std::left << std::setw(20) << el.pavarde() << std::left << std::setw(20) << std::fixed << std::setprecision(2) << el.galutinis() << std::left << std::setw(20) << std::fixed << std::setprecision(2) << el.mediana() << std::endl;
+			G << el;
 		}
 		for (auto el : list)
 		{
-			B << std::left << std::setw(20) << el.vardas() << std::left << std::setw(20) << el.pavarde() << std::left << std::setw(20) << std::fixed << std::setprecision(2) << el.galutinis() << std::left << std::setw(20) << std::fixed << std::setprecision(2) << el.mediana() << std::endl;
+			B << el;
 		}
 
 		end = std::chrono::steady_clock::now();
