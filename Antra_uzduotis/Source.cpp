@@ -4,8 +4,8 @@
 int main()
 {
 	int wh = 3;
-		std::cout << "Rasyti duomenis ranka (0), skaityti is failo (1), laiko matavimas (2) : " << std::endl;
-		std::cin >> wh;
+	std::cout << "Rasyti duomenis ranka (0), skaityti is failo (1), laiko matavimas (2) : " << std::endl;
+	std::cin >> wh;
 
 	if (wh == 0)
 	{
@@ -50,7 +50,7 @@ int main()
 		std::vector<std::string> data;
 		int eilutes = 0;
 
-		std::ofstream O ("kursiokaiRESULT.txt");
+		std::ofstream O("kursiokaiRESULT.txt");
 
 		bool result = file("kursiokai.txt", data);
 		data.erase(data.begin());
@@ -85,37 +85,37 @@ int main()
 
 		for (auto& line : data)
 		{
-				S.clear();
-				S << line;
-				S >> vardas >> pavarde;
-				
-				
-				stud.set_vardas(vardas);
-				for (int i = 0; i < (space - 2); i++)
-				{
-					S >> p;
-					pazymiai += p;
-					mark;
-					stud.set_mark(mark);
-				}
-				S >> egzaminas;
-				stud.set_egzaminas(egzaminas);
-				galutinis = 0.4 * (pazymiai / (space - 2)) + 0.6 * egzaminas;
-				stud.set_galutinis(galutinis);
-				sort(stud.mark().begin(), stud.mark().end());
-				if ((space-2) % 2)
-				{
-					mediana = (stud.mark()[(space-2) / 2] + stud.mark()[((space-2) / 2 + 1)]) / 2;
-					stud.set_mediana(mediana);
-				}
-				else
-				{
-					mediana = stud.mark()[(space-2) / 2];
-					stud.set_mediana(mediana);
-				}
-				pazymiai = 0;
-				stud.mark().clear();
-				list.push_back(stud);
+			S.clear();
+			S << line;
+			S >> vardas >> pavarde;
+
+
+			stud.set_vardas(vardas);
+			for (int i = 0; i < (space - 2); i++)
+			{
+				S >> p;
+				pazymiai += p;
+				mark;
+				stud.set_mark(mark);
+			}
+			S >> egzaminas;
+			stud.set_egzaminas(egzaminas);
+			galutinis = 0.4 * (pazymiai / (space - 2)) + 0.6 * egzaminas;
+			stud.set_galutinis(galutinis);
+			sort(stud.mark().begin(), stud.mark().end());
+			if ((space - 2) % 2)
+			{
+				mediana = (stud.mark()[(space - 2) / 2] + stud.mark()[((space - 2) / 2 + 1)]) / 2;
+				stud.set_mediana(mediana);
+			}
+			else
+			{
+				mediana = stud.mark()[(space - 2) / 2];
+				stud.set_mediana(mediana);
+			}
+			pazymiai = 0;
+			stud.mark().clear();
+			list.push_back(stud);
 		}
 
 		data.clear();
@@ -137,7 +137,7 @@ int main()
 
 		std::stringstream S;
 		std::string name, sur;
-		int n=0, np=0, fl=0;
+		int n = 0, np = 0, fl = 0;
 		studentas stud;
 		std::vector<studentas> list;
 		std::vector<studentas> geri;
@@ -213,7 +213,7 @@ int main()
 			np = space - 1;
 		}
 
-		int p=0, pazymiai=0;
+		int p = 0, pazymiai = 0;
 		std::ofstream G("..\\..\\Gerieciai_vector.txt");
 		std::ofstream B("..\\..\\Blogieciai_vector.txt");
 
@@ -223,7 +223,7 @@ int main()
 		start = std::chrono::steady_clock::now();
 
 		string vardas, pavarde;
-		int mark = 0, egzaminas = 0;
+		int mark = 0, egzaminas = 0, paz[100];
 		double galutinis = 0, mediana = 0;
 
 		for (auto& line : data)
@@ -233,36 +233,37 @@ int main()
 			S >> vardas >> pavarde;
 			stud.set_vardas(vardas);
 			stud.set_pavarde(pavarde);
-
-			for (int i = 0; i < (np - 3); i++)
+			for (int i = 0; i < (np-3); i++)
 			{
 				S >> p;
 				pazymiai += p;
-				stud.mark().push_back(p);
+				paz[i] = p;
 			}
-			S >> egzaminas;
-			stud.set_egzaminas(egzaminas);
-			galutinis = 0.4 * (pazymiai / (np - 3)) + 0.6 * egzaminas;
-			stud.set_galutinis(galutinis);
-			sort(stud.mark().begin(), stud.mark().end());
-			sort(stud.mark().begin(), stud.mark().end());
-			if ((np - 3) % 2)
+
+			std::sort(paz, paz+(np-3));
+			if (((np-3) - 2) % 2)
 			{
-				mediana = (stud.mark()[(np - 3) / 2] + stud.mark()[((np - 3) / 2 + 1)]) / 2;
+				mediana = (paz[((np-3) - 2) / 2] + paz[(((np-3) - 2) / 2 + 1)]) / 2;
 				stud.set_mediana(mediana);
 			}
 			else
 			{
-				//mediana = stud.mark()[(np - 3) / 2];
+				mediana = paz[((np-3) - 2) / 2];
 				stud.set_mediana(mediana);
 			}
+
+			S >> egzaminas;
+			stud.set_egzaminas(egzaminas);
+			galutinis = 0.4 * (pazymiai / (np - 3)) + 0.6 * egzaminas;
+			stud.set_galutinis(galutinis);
+
 			pazymiai = 0;
 			stud.mark().clear();
 			list.push_back(stud);
 		}
 
 		end = std::chrono::steady_clock::now();
-		cout << "Failo su "<< n <<" studentu nuskaitymas uztruko: " << std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count() << " ms." << std::endl;
+		cout << "Failo su " << n << " studentu nuskaitymas uztruko: " << std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count() << " ms." << std::endl;
 
 		start = std::chrono::steady_clock::now();
 		sort(list.begin(), list.end(), compare_mark);
