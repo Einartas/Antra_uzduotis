@@ -1,3 +1,11 @@
+# v1.5
+
+Pridėta klasė Žmogus, klasė Studentas padaryta kaip derivative iš Žmogus.
+
+# v1.2
+
+Įvykdyta rule of three ir perdengtas išvedimo << operatorius.
+
 # v1.1
 
 Pakeistas programos kodas taip, kad naudojama ne struktūra o klasė. 
@@ -7,11 +15,51 @@ Spartos matavimai atlikti su tais pačiais failais toje pačioje sistemoje.
 Sistemos parametrai: CPU: AMD Ryzen 5 5500U 2.1 GHz 6 cores SSD: WDC PC SN530 256GB RAM: 8GB 3200Mhz
 
 Spartos matavimai struktūra prieš klasę:
-[class_struct.txt](https://github.com/Einartas/Antra_uzduotis/files/8668925/class_struct.txt)
+Struct:
+
+1000000 įrašų:
+Vector nuskaitymas: 1.315s, rūšiavimas į dvi grupes: 0.141s, rūšiavimas sort: 0.139s, išvedimas į failus: 4.959s
+
+10000000 įrašų:
+Vector nuskaitymas: 13.114s, rūšiavimas į dvi grupes: 2.074s, rūšiavimas sort: 1.413s, išvedimas į failus: 48.378s
+
+Class:
+
+1000000 įrašų:
+Vector nuskaitymas: 1.449s, rūšiavimas į dvi grupes: 0.139s, rūšiavimas sort: 0.074s, išvedimas į failus: 4.232s
+
+10000000 įrašų:
+Vector nuskaitymas: 18.131s, rūšiavimas į dvi grupes: 2.922s, rūšiavimas sort: 0.666s, išvedimas į failus: 39.618s
 
 Spartos matavimai su optimizacijų flag'ais:
-[class_flags.txt](https://github.com/Einartas/Antra_uzduotis/files/8669024/class_flags.txt)
+Class:
 
+1000000 įrašų:
+Vector nuskaitymas: 1.449s, rūšiavimas į dvi grupes: 0.139s, rūšiavimas sort: 0.074s, išvedimas į failus: 4.232s
+
+10000000 įrašų:
+Vector nuskaitymas: 18.131s, rūšiavimas į dvi grupes: 2.922s, rūšiavimas sort: 0.666s, išvedimas į failus: 39.618s
+
+Class su flag'ais:
+
+Fast code flag'as: 
+
+Vector nuskaitymas: 1,482s, rūšiavimas į dvi grupes: 0,131s, rūšiavimas sort: 0,082s, išvedimas į failus: 4,113s
+
+10000000 įrašų:
+Vector nuskaitymas: 15,954s, rūšiavimas į dvi grupes: 1,649s, rūšiavimas sort: 0,956s, išvedimas į failus: 40,033s
+
+RAM gali pasiekti iki 3,8GB naudojimą
+
+Small code flag'as:
+
+1000000:
+Vector nuskaitymas: 1,473s, rūšiavimas į dvi grupes: 0,122s, rūšiavimas sort: 0,077s, išvedimas į failus: 4,079s
+
+10000000:
+Vector nuskaitymas: 14,940s, rūšiavimas į dvi grupes: 1.920s, rūšiavimas sort: 0.664s, išvedimas į failus: 39.370s
+
+RAM gali pasiekti iki 3,8GB naudojimą
 # v1.0 
 
 Sukurtas makefile, kurio pagalba lengvai įsidiegsite programą.
