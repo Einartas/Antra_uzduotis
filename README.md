@@ -1,6 +1,7 @@
 # v2.0
 
 Sukurtas programos įdiegimo failas.
+Įdiegimo instrukcija: paleidžiamas setup.msi failas, spaudžiama "next", sekančiame lange pasirenkama įdiegimo vieta, spaudžiama "next" ir instaliacija prasidės.
 
 Sukurta programos dokumentacija naudojant Doxygen.
 
