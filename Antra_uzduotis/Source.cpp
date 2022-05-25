@@ -233,22 +233,22 @@ int main()
 			S >> vardas >> pavarde;
 			stud.set_vardas(vardas);
 			stud.set_pavarde(pavarde);
-			for (int i = 0; i < (np-3); i++)
+			for (int i = 0; i < (np - 3); i++)
 			{
 				S >> p;
 				pazymiai += p;
 				paz[i] = p;
 			}
 
-			std::sort(paz, paz+(np-3));
-			if (((np-3) - 2) % 2)
+			std::sort(paz, paz + (np - 3));
+			if (((np - 3) - 2) % 2)
 			{
-				mediana = (paz[((np-3) - 2) / 2] + paz[(((np-3) - 2) / 2 + 1)]) / 2;
+				mediana = (paz[((np - 3) - 2) / 2] + paz[(((np - 3) - 2) / 2 + 1)]) / 2;
 				stud.set_mediana(mediana);
 			}
 			else
 			{
-				mediana = paz[((np-3) - 2) / 2];
+				mediana = paz[((np - 3) - 2) / 2];
 				stud.set_mediana(mediana);
 			}
 

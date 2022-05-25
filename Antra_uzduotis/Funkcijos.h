@@ -57,7 +57,7 @@ public:
 
 	studentas& operator=(const studentas&); // priskyrimo operatorius
 
-	friend std::ostream& operator << (std::ostream &out, studentas &s);
+	friend std::ostream& operator << (std::ostream& out, studentas& s);
 };
 
 void input(studentas& temp);

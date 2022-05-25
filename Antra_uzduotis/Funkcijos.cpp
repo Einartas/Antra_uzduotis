@@ -2,7 +2,7 @@
 
 studentas::studentas() {  }; // destruktorius
 
-studentas :: studentas(const studentas& stud) // copy konstruktorius
+studentas::studentas(const studentas& stud) // copy konstruktorius
 {
 
 	vardas_ = stud.vardas_;
