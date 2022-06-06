@@ -48,7 +48,7 @@ public:
 	void set_vardas(string v) { vardas_ = v; }
 	void set_pavarde(string p) { pavarde_ = p; }
 	void set_mark(int& m) { mark_.push_back(m); }
-	void set_egzaminas(int& e) { egzaminas_ = e; }
+	void set_egzaminas(int e) { egzaminas_ = e; }
 	void set_pazymiai(int& p) { pazymiai_ = p; }
 	void set_galutinis(double& g) { galutinis_ = g; }
 	void set_mediana(double& m) { mediana_ = m; }

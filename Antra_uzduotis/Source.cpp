@@ -3,138 +3,61 @@
 
 int main()
 {
-	int wh = 3;
-	std::cout << "Rasyti duomenis ranka (0), skaityti is failo (1), laiko matavimas (2) : " << std::endl;
-	std::cin >> wh;
 
-	if (wh == 0)
+	int ka = 0;
+	cout << "Studentu duomenys 0, skaiciu pildymas 1 : ";
+	cin >> ka;
+
+	if (ka == 1)
 	{
-		int n = 0;
-		cout << "Iveskite kiek studentu: ";
-		cin >> n;
+		auto start = std::chrono::steady_clock::now();
+		auto end = std::chrono::steady_clock::now();
 
-		if (n < 1 || n > 100)
-		{
-			//cout << "Netinkamas simbolis arba kiekis! Iveskite skaiciu daugiau uz 0: ";
-			{
-				while (!(cin >> n) || n < 1 || n > 100)
-				{
-					cout << "Netinkamas simbolis arba kiekis! Iveskite skaiciu daugiau uz 0: ";
-					cin.clear();
-					cin.ignore(123, '\n');
-				}
-			}
-		}
+		start = std::chrono::steady_clock::now();
+		unsigned int sz = 10000;
+		std::vector<int> v1;
+		for (int i = 1; i <= sz; ++i)
+			v1.push_back(i);
+		end = std::chrono::steady_clock::now();
+		cout << sz << " skaiciu vektoriaus pildymas uztruko: " << std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count() << "ms" << std::endl;
 
-		studentas s;
-		studentas* dm = new studentas[n];
-		for (int i = 0; i < n; i++)
-		{
-			input(dm[i]);
-		}
+		start = std::chrono::steady_clock::now();
+		sz = 100000;
+		std::vector<int> v2;
+		for (int i = 1; i <= sz; ++i)
+			v2.push_back(i);
+		end = std::chrono::steady_clock::now();
+		cout << sz << " skaiciu vektoriaus pildymas uztruko: " << std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count() << "ms" << std::endl;
 
-		cout << "------------------------------------------------------" << std::endl;
+		start = std::chrono::steady_clock::now();
+		sz = 1000000;
+		std::vector<int> v3;
+		for (int i = 1; i <= sz; ++i)
+			v3.push_back(i);
+		end = std::chrono::steady_clock::now();
+		cout << sz << " skaiciu vektoriaus pildymas uztruko: " << std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count() << "ms" << std::endl;
 
-		for (int i = 0; i < n; i++)
-		{
-			output(dm[i], i);
-		}
+		start = std::chrono::steady_clock::now();
+		sz = 10000000;
+		std::vector<int> v4;
+		for (int i = 1; i <= sz; ++i)
+			v4.push_back(i);
+		end = std::chrono::steady_clock::now();
+		cout << sz << " skaiciu vektoriaus pildymas uztruko: " << std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count() << "ms" << std::endl;
 
-		cout << "------------------------------------------------------" << std::endl;
+		start = std::chrono::steady_clock::now();
+		sz = 100000000;
+		std::vector<int> v5;
+		for (int i = 1; i <= sz; ++i)
+			v5.push_back(i);
+		end = std::chrono::steady_clock::now();
+		cout << sz << " skaiciu vektoriaus pildymas uztruko: " << std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count() << "ms" << std::endl;
 
-		delete[] dm;
+
 	}
 
-	if (wh == 1)
+	if (ka == 0)
 	{
-		std::vector<std::string> data;
-		int eilutes = 0;
-
-		std::ofstream O("kursiokaiRESULT.txt");
-
-		bool result = file("kursiokai.txt", data);
-		data.erase(data.begin());
-
-		if (result)
-		{
-			for (std::string& line : data)
-			{
-				eilutes++;
-			}
-		}
-
-		int space = 0;
-		for (auto el : data)
-		{
-			for (int i = 0; i < el.length(); i++)
-			{
-				if (i != el.length() - 1)
-				{
-					if ((el.at(i) == ' ') && (el.at(i + 1) != ' ')) space++;
-				}
-			}
-			break;
-		}
-
-		std::stringstream S;
-		string vardas, pavarde, tmp;
-		int pazymiai = 0, p = 0, a = 1, egzaminas = 0, mark = 0;
-		double galutinis = 0, mediana = 0;
-		std::vector<studentas> list;
-		studentas stud;
-
-		for (auto& line : data)
-		{
-			S.clear();
-			S << line;
-			S >> vardas >> pavarde;
-
-
-			stud.set_vardas(vardas);
-			for (int i = 0; i < (space - 2); i++)
-			{
-				S >> p;
-				pazymiai += p;
-				mark;
-				stud.set_mark(mark);
-			}
-			S >> egzaminas;
-			stud.set_egzaminas(egzaminas);
-			galutinis = 0.4 * (pazymiai / (space - 2)) + 0.6 * egzaminas;
-			stud.set_galutinis(galutinis);
-			sort(stud.mark().begin(), stud.mark().end());
-			if ((space - 2) % 2)
-			{
-				mediana = (stud.mark()[(space - 2) / 2] + stud.mark()[((space - 2) / 2 + 1)]) / 2;
-				stud.set_mediana(mediana);
-			}
-			else
-			{
-				mediana = stud.mark()[(space - 2) / 2];
-				stud.set_mediana(mediana);
-			}
-			pazymiai = 0;
-			stud.mark().clear();
-			list.push_back(stud);
-		}
-
-		data.clear();
-		sort(list.begin(), list.end(), compare_vardas);
-
-
-		O << std::left << std::setw(20) << "Vardas" << std::left << std::setw(20) << "Pavarde" << std::left << std::setw(20) << "Galutinis vid" << std::left << std::setw(20) << "Galutinis med" << std::endl << std::endl;
-
-		for (auto el : list)
-		{
-			O << el;
-		}
-
-		O.close();
-	}
-
-	if (wh == 2)
-	{
-
 		std::stringstream S;
 		std::string name, sur;
 		int n = 0, np = 0, fl = 0;
@@ -261,6 +184,7 @@ int main()
 			stud.mark().clear();
 			list.push_back(stud);
 		}
+		data.clear();
 
 		end = std::chrono::steady_clock::now();
 		cout << "Failo su " << n << " studentu nuskaitymas uztruko: " << std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count() << " ms." << std::endl;
@@ -282,8 +206,6 @@ int main()
 		end = std::chrono::steady_clock::now();
 		cout << "Failo su " << n << " studentu rusiavimas i dvi kategorijas uztruko: " << std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count() << " ms." << std::endl;
 
-		data.clear();
-
 		start = std::chrono::steady_clock::now();
 
 		for (auto el : geri)
@@ -303,6 +225,5 @@ int main()
 
 		printf("Visos programos darbo laikas: %.2fs\n", (double)(clock() - tStart) / CLOCKS_PER_SEC);
 	}
-
 	system("pause");
 }
